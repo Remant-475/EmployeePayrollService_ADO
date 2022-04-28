@@ -15,7 +15,8 @@ namespace EmployeePayroll
                 Console.WriteLine("1: For Establish Connection");
                 Console.WriteLine("2: For Close Connection");
                 Console.WriteLine("3: For All Employee Details");
-               
+                Console.WriteLine("4: For Update EmployeeDetails");
+
                 option = int.Parse(Console.ReadLine());
                 switch (option)
                 {
@@ -30,7 +31,20 @@ namespace EmployeePayroll
                     case 3:
                         details.GetAllEmployeePayrollData();
                         break;
-                       
+                    case 4:
+                        Employee empPayroll = new Employee();
+                        Console.WriteLine("Enter Employee Id");
+                        int EmployeeId = int.Parse(Console.ReadLine());
+                        empPayroll.ID = EmployeeId;
+                        Console.WriteLine("Enter Employee Name");
+                        string Employee_name = Console.ReadLine();
+                        empPayroll.Name = Employee_name;
+                        Console.WriteLine("Enter Basic Pay");
+                        int Basicpay = int.Parse(Console.ReadLine());
+                        empPayroll.BasicPay = Basicpay;
+                        details.UpdateSalary(empPayroll);
+                        break;
+
 
                 }
             }

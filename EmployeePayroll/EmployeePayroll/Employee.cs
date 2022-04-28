@@ -8,7 +8,7 @@ namespace EmployeePayroll
 {
     public  class Employee
     {
-        public int EmpID { get; set; }
+        public int ID { get; set; }
         public string Name { get; set; }
         public DateTime StartDate { get; set; }
         public Int64 Phonenumber { get; set; }
