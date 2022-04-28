@@ -47,7 +47,27 @@ namespace EmployeePayrollServiceTesting
             employee=details.GetDetailsEmployees_FromDateRange(FromDate, EndDate);
             Assert.AreEqual(2, employee.Count);
         }
+        [Test]
+        public void Insert_ReturnExpected()
+        {
+            EmployeeDetails employee = new EmployeeDetails();
+            Employee empPayroll = new Employee
+            {
+                Name = "Renu",
+                Phonenumber = 7894561211,
+                StartDate = DateTime.Now,
+                Address = "Nagpur",
+            Gender = "F",
+            BasicPay = 4000000,
+            Department="IT"
 
+        };
+        int result = EmployeeDetails.InsertNewEmployee(empPayroll);
+        Assert.AreEqual(0,result);
+        }
 
-    }
 }
+        }
+
+
+    

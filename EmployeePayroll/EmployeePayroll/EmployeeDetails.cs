@@ -160,6 +160,39 @@ namespace EmployeePayroll
             }
             return null;
         }
+        public static int InsertNewEmployee(Employee emp)
+        {
+
+            SqlConnection connection = new SqlConnection(connectionString);
+
+            string SPName = "dbo.insertDetails";
+            using (connection)
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(SPName, connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@Name", emp.Name);
+                command.Parameters.AddWithValue("@StartDate", emp.StartDate);
+                command.Parameters.AddWithValue("@PhoneNumber", emp.Phonenumber);
+                command.Parameters.AddWithValue("@Address", emp.Address);
+                command.Parameters.AddWithValue("@Gender", emp.Gender);
+                        command.Parameters.AddWithValue("@BasicPay", emp.BasicPay);
+                        command.Parameters.AddWithValue("@Deduction", emp.Deduction);
+                        command.Parameters.AddWithValue("@TaxablePay", emp.TaxablePay);
+                        command.Parameters.AddWithValue("@IncomeTax", emp.IncomeTax);
+                        command.Parameters.AddWithValue("@NetPay", emp.NetPay);
+                command.Parameters.AddWithValue("@Department", emp.Department);
+
+                var resultPara = command.Parameters.Add("@new_identity", SqlDbType.Int);
+        resultPara.Direction = ParameterDirection.ReturnValue;
+                        command.ExecuteNonQuery();
+
+                        connection.Close();
+                        var result = resultPara.Value;
+                        return (int) result;
+            }
+        }
+
     }
 } 
     
