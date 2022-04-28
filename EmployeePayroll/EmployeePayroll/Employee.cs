@@ -6,20 +6,21 @@ using System.Threading.Tasks;
 
 namespace EmployeePayroll
 {
-    public class Employee
+    public  class Employee
     {
-        public int EmployeeId { get; set; }
-        public string EmployeeName { get; set; }
-        public string EmployeeAddress{ get; set; }
-        public double EmployeePhonenumber { get; set; }
-        public  DateTime StartDate { get; set; }
+        public int EmpID { get; set; }
+        public string Name { get; set; }
+        public DateTime StartDate { get; set; }
+        public Int64 Phonenumber { get; set; }
+        public string Address{ get; set; }
+       
         public string Gender { get; set; }
    
         public double BasicPay { get; set; }
-        public double Deductions { get; set; }
+        public double Deduction { get; set; }
         public double TaxablePay { get; set; }
         public double IncomeTax { get; set; }
         public double NetPay { get; set; }
-        public string DepartName { get; set; }
+        public string Department { get; set; }
     }
 }

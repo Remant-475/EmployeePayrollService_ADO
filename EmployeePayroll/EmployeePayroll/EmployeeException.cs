@@ -11,7 +11,7 @@ namespace EmployeePayroll
         public enum ExceptionType
         {
           
-            Connection_Failed
+            Connection_Failed, BasicPay_Not_Updated,No_Data_Found
         }
         ExceptionType exceptionType;
 
