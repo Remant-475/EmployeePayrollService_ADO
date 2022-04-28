@@ -104,6 +104,62 @@ namespace EmployeePayroll
                 return false;
             }
         }
+        public List<Employee> GetDetailsEmployees_FromDateRange(DateTime FromDate, DateTime ToDate)
+        {
+            Employee employee;
+            List<Employee> employeeList = new List<Employee>();
+
+            SqlConnection connection = new SqlConnection(connectionString);
+            SqlCommand command = new SqlCommand("dbo.GetDetails_DateRange", connection);
+            {
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+            };
+            try
+            {
+                connection.Open();
+                using (connection)
+                {
+                    command.Parameters.AddWithValue("@FromDate", FromDate);
+                    command.Parameters.AddWithValue("@ToDate", ToDate);
+                    SqlDataReader rd = command.ExecuteReader();
+                    while (rd.Read())
+                    {
+                        employee = new Employee();
+                        {
+                            employee.ID = rd.GetInt32(0);
+                            employee.Name = rd.GetString(1);
+                            employee.StartDate = rd.GetDateTime(2).Date;
+                            employee.Phonenumber = rd.GetInt64(3);
+                            employee.Address = rd.GetString(4);
+                            employee.Gender = rd.GetString(5);
+                            employee.BasicPay = rd.GetInt64(6);
+                            employee.Deduction = rd.GetInt64(7);
+                            employee.TaxablePay = rd.GetInt64(8);
+                            employee.IncomeTax = rd.GetInt64(9);
+                            employee.NetPay = rd.GetInt64(10);
+                            employee.Department = rd.GetString(11);
+                        };
+
+                        Console.WriteLine(employee.ID + "," + employee.Name + "," + employee.Phonenumber + "," + employee.NetPay + "," + employee.Department);
+                        employeeList.Add(employee);
+                    }
+                    return employeeList;
+
+                }
+            }
+            catch (SqlException)
+            {
+                try
+                {
+                    connection.Close();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message); ;
+                }
+            }
+            return null;
+        }
     }
 } 
     

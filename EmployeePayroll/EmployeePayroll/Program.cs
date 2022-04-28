@@ -16,6 +16,7 @@ namespace EmployeePayroll
                 Console.WriteLine("2: For Close Connection");
                 Console.WriteLine("3: For All Employee Details");
                 Console.WriteLine("4: For Update EmployeeDetails");
+                Console.WriteLine("5: For DateRange ");
 
                 option = int.Parse(Console.ReadLine());
                 switch (option)
@@ -44,7 +45,15 @@ namespace EmployeePayroll
                         empPayroll.BasicPay = Basicpay;
                         details.UpdateSalary(empPayroll);
                         break;
-
+                    case 5:
+                        Console.WriteLine("Enter From Date");
+                        string FromDate = Console.ReadLine();
+                        DateTime dateTime_1 = DateTime.Parse(FromDate);
+                        Console.WriteLine("Enter End Date");
+                        string endDate = Console.ReadLine();
+                        DateTime dateTime_2 = DateTime.Parse(endDate);
+                        details.GetDetailsEmployees_FromDateRange(dateTime_1, dateTime_2);
+                        break;
 
                 }
             }

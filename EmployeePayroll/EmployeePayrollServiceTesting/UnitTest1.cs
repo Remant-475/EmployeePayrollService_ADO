@@ -38,6 +38,15 @@ namespace EmployeePayrollServiceTesting
             bool result = details.UpdateSalary(employee);
             Assert.AreEqual(expected, result);
         }
+        [Test]
+        public void Retrieve_Details_DateRnge()
+        {
+            List<Employee> employee = new List<Employee>();
+            DateTime FromDate = DateTime.Parse("2018-01-01");
+            DateTime EndDate = DateTime.Parse("2020-12-31");
+            employee=details.GetDetailsEmployees_FromDateRange(FromDate, EndDate);
+            Assert.AreEqual(2, employee.Count);
+        }
 
 
     }
