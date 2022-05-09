@@ -192,6 +192,29 @@ namespace EmployeePayroll
                         return (int) result;
             }
         }
+        public bool DeleteEmployee(Employee employee)
+        {
+            try
+            {
+                using (connection)
+                {
+                    SqlCommand command = new SqlCommand("dbo.DeleteRecord", connection);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@Name", employee.Name);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    connection.Close();
+
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                return false;
+                throw new Exception(e.Message);
+
+            }
+        }
 
     }
 } 

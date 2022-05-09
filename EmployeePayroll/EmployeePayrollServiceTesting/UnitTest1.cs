@@ -45,7 +45,7 @@ namespace EmployeePayrollServiceTesting
             DateTime FromDate = DateTime.Parse("2018-01-01");
             DateTime EndDate = DateTime.Parse("2020-12-31");
             employee=details.GetDetailsEmployees_FromDateRange(FromDate, EndDate);
-            Assert.AreEqual(2, employee.Count);
+            Assert.AreEqual(1, employee.Count);
         }
         [Test]
         public void Insert_ReturnExpected()
@@ -65,8 +65,20 @@ namespace EmployeePayrollServiceTesting
         int result = EmployeeDetails.InsertNewEmployee(empPayroll);
         Assert.AreEqual(0,result);
         }
+        [Test]
+        public void GivenEmployeePayrollID_WhenDeletInTable_ThenshouldReturnExpectedResult()
+        {
+            bool expected = true;
+            EmployeeDetails details = new EmployeeDetails();
+            Employee model = new Employee
+            {
+                Name = "Ajit",
+            };
+            bool result = details.DeleteEmployee(model);
+            Assert.AreEqual(expected, result);
+        }
 
-}
+    }
         }
 
 

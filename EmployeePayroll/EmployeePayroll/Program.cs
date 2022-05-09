@@ -18,6 +18,7 @@ namespace EmployeePayroll
                 Console.WriteLine("4: For Update EmployeeDetails");
                 Console.WriteLine("5: For DateRange ");
                 Console.WriteLine("6: For Add Employee Details");
+                Console.WriteLine("7: For Delete Employee Details");
                 Console.WriteLine("0: For Exit");
                 option = int.Parse(Console.ReadLine());
                 switch (option)
@@ -74,7 +75,13 @@ namespace EmployeePayroll
                         employee.BasicPay = basicpay;
                         EmployeeDetails.InsertNewEmployee(employee);
                         break;
-
+                        case 7:
+                        Employee employees = new Employee();
+                        Console.WriteLine("Enter the Name");
+                        string employeename= Console.ReadLine();
+                        employees.Name= employeename;
+                        details.DeleteEmployee(employees);
+                        break;
                 }
             }
             while (option != 0);
